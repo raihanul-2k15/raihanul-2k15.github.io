@@ -1,5 +1,5 @@
 function do_assignment() {
-	const TOTAL=5;
+	const TOTAL=40;
 	const CLASS_INTERVAL=5;
 	var marks_str=document.getElementById("marks").value;
 	var marks = marks_str.split(" ");
