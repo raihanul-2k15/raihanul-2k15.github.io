@@ -6,9 +6,9 @@
 		<script src="assignment.js"></script>
 	</head>
 	<body>
-		<h5>Enter 40 marks separated by single space</h5>
-		<textarea rows="3" cols="60" id="marks"></textarea><br>
-		<button onclick="do_assignment()">Go!</button>
+		<h5>Enter your roll number: </h5>
+		<input type="text" onchange="validOrNot()" size="3" id="roll"><br>
+		<button onclick="do_assignment()" id="btnGo" disabled="true">Go!</button>
 		<p id="status">Status:</p><br>
 		<table>
 			<tr>
@@ -32,30 +32,30 @@
 				<td id="fd_4_0"></td>
 			</tr>
 			<tr>
-				<td>6-10</td>
-				<td>8</td>
+				<td>5-10</td>
+				<td>7.5</td>
 				<td id="freq_1"></td>
-				<td>-0.4</td>
+				<td>-0.5</td>
 				<td id="fd_1_1"></td>
 				<td id="fd_2_1"></td>
 				<td id="fd_3_1"></td>
 				<td id="fd_4_1"></td>
 			</tr>
 			<tr>
-				<td>11-15</td>
-				<td>13</td>
+				<td>10-15</td>
+				<td>12.5</td>
 				<td id="freq_2"></td>
-				<td>0.6</td>
+				<td>0.5</td>
 				<td id="fd_1_2"></td>
 				<td id="fd_2_2"></td>
 				<td id="fd_3_2"></td>
 				<td id="fd_4_2"></td>
 			</tr>
 			<tr>
-				<td>16-20</td>
-				<td>18</td>
+				<td>15-20</td>
+				<td>17.5</td>
 				<td id="freq_3"></td>
-				<td>1.6</td>
+				<td>1.5</td>
 				<td id="fd_1_3"></td>
 				<td id="fd_2_3"></td>
 				<td id="fd_3_3"></td>
@@ -115,7 +115,7 @@
 			</table>
 			<br>
 			<p>Ans 3:<br>
-			Mean <span style="text-decoration:overline">x</span> = A + (&Sigma;fd / N) = <span id="mean"></span><br>
+			Mean <span style="text-decoration:overline">x</span> = A + (&Sigma;fd / N) * i = <span id="mean"></span><br>
 			Standard deviation &sigma; = &radic;<span style="text-decoration:overline">(&Sigma;fd<sup>2</sup> / N) - (&Sigma;fd / N)<sup>2</sup></span> = <span id="standard_deviation"></span></p>
 			<p>Ans 4:<br>
 			co-efficient of skewness &gamma;<sub>1</sub> = &mu;<sub>3</sub>/&sigma;<sup>3</sup> = <span id="skewness"></span></p>

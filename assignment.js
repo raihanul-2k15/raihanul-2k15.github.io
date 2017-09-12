@@ -1,26 +1,36 @@
+function validOrNot() {
+	var r=document.getElementById("roll").value;
+	if (isNaN(r)) {
+		document.getElementById("btnGo").disabled=true;
+	} else {
+		document.getElementById("btnGo").disabled=false;
+	}
+}
 function do_assignment() {
 	const TOTAL=40;
 	const CLASS_INTERVAL=5;
-	var marks_str=document.getElementById("marks").value;
-	var marks = marks_str.split(" ");
+	const A=10;
+	var all_marks=[20,15,14,13,18,10,14,19,19,19,0,13,13,20,20,17,15,4,16,20,0,20,18,9,17,14,15,15,9,16,10,20,0,19,0,10,16,0,18,18,14,19,20,14,17,10,17,0,17,16,14,11,13,16,16,14,14,15,17,18,
+					19,18,17,11,15,9,15,14,17,19,17,18,15,20,20,20,16,16,20,16,18,17,19,19,18,19,20,19,11,20,20,19,16,19,20,18,0,10,15,16,19,19,17,19,11,20,16,19,20,13,12,20,20,14,17,19,11,7,14,19];
+	var roll=+document.getElementById("roll").value;
 	var statusObj=document.getElementById("status");
-	if (marks.length!=TOTAL) {
-		statusObj.innerHTML="Status: Enter 40 marks. ";
-		statusObj.style.color = "red";
+	if (isNaN(roll)) {
+		statusObj.innerHTML="Status: Enter valid roll."
+		statusObj.color="red";
 		return "error";
-	} else {
-		for (var i=0;i<marks.length;i++) {
-			marks[i] = +marks[i];
-			if (isNaN(marks[i])) {
-				statusObj.innerHTML="Status: Enter numbers only.";
-				statusObj.style.color="red";
-				return "error";
-			}
-		}
 	}
-	statusObj.innerHTML="Status: Input valid. Processing...";
-	statusObj.style.color="blue";
+	if (roll <0 || roll >120) {
+		statusObj.innerHTML="Status: Enter roll within 1 and 120."
+		statusObj.color="red";
+		return "error";
+	}
 
+	statusObj.innerHTML="Status: Roll valid. Processing...";
+	statusObj.style.color="blue";
+	var marks=[];
+	for (var i=-1;i<TOTAL-1;i++) {
+		marks.push(all_marks[(roll+i)%all_marks.length]);
+	}
 	var f=[0,0,0,0];
 	for (var i=0;i<TOTAL;i++) {
 		if (marks[i]>=0 && marks[i]<=5) {
@@ -33,20 +43,12 @@ function do_assignment() {
 			f[3]++;
 		}
 	}
-	var N=0;
-	for (var i=0;i<f.length;i++) {
-		N+=f[i];
-	}
-	if (N!=TOTAL) {
-		statusObj.innerHTML=typeof(N);
-		return "error";
-	}
-	// at this point everything with input is OK
+	var N=40;
 	document.getElementById("answers").style.display="block";
 	for (var i=0;i<4;i++) {
 		document.getElementById("freq_"+i).innerHTML=f[i];
 	}
-	var d=[-1.5,-0.4,0.6,1.6];
+	var d=[-1.5,-0.5,0.5,1.5];
 	var sum_fd_1=0,sum_fd_2=0,sum_fd_3=0,sum_fd_4=0;
 	for (var r=0;r<4;r++) { // take one row
 		var temp=f[r]*d[r];
@@ -90,7 +92,7 @@ function do_assignment() {
 	document.getElementById("4_c_m").innerHTML=u4.toFixed(2);
 
 	// mean and standard deviation
-	var mean=10 + sum_fd_1 / N;
+	var mean=A + CLASS_INTERVAL * sum_fd_1 / N;
 	var standard_deviation=Math.sqrt(sum_fd_2/N - Math.pow(sum_fd_1/N,2))*CLASS_INTERVAL;
 	document.getElementById("mean").innerHTML=mean.toFixed(2);
 	document.getElementById("standard_deviation").innerHTML=standard_deviation.toFixed(2);
