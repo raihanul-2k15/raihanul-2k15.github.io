@@ -19,8 +19,8 @@ function do_assignment() {
 		statusObj.color="red";
 		return "error";
 	}
-	if (roll <0 || roll >120) {
-		statusObj.innerHTML="Status: Enter roll within 1 and 120."
+	if (roll <0 || roll >121) {
+		statusObj.innerHTML="Status: Enter roll within 1 and 121."
 		statusObj.color="red";
 		return "error";
 	}
